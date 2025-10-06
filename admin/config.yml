@@ -1,3 +1,4 @@
+site_url: https://crackforfun.netlify.app
 
 backend:
   name: git-gateway
