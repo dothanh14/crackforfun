@@ -1,0 +1,31 @@
+
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "images/uploads"
+public_folder: "/images/uploads"
+
+collections:
+  - name: "games"
+    label: "Games"
+    label_singular: "Game"
+    files:
+      - file: "data/games.json"
+        label: "Danh sách Game"
+        name: "games_list"
+        fields:
+          - label: "Games"
+            name: "items"
+            widget: "list"
+            summary: "{{fields.title}} ({{fields.slug}})"
+            fields:
+              - { label: "Tiêu đề", name: "title", widget: "string" }
+              - { label: "Slug (không dấu, dùng làm id)", name: "slug", widget: "string", hint: "vd: veloren, 0ad" }
+              - { label: "Mô tả ngắn", name: "excerpt", widget: "text" }
+              - { label: "Ảnh thumbnail", name: "thumb", widget: "image", required: false }
+              - { label: "Link sạch (GoFile/Official)", name: "clean_url", widget: "string", required: false }
+              - { label: "Link rút gọn kiếm tiền", name: "short_url", widget: "string", required: false }
+              - { label: "Link host trả tiền (UploadHaven…)", name: "host_url", widget: "string", required: false }
+              - { label: "Link Filecrypt (container)", name: "filecrypt_url", widget: "string", required: false }
+              - { label: "Nội dung chi tiết (Markdown)", name: "body", widget: "markdown" }

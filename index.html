@@ -1,0 +1,43 @@
+
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CRACKFORFUN – Game Hub</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+<header class="header"><div class="container">
+  <a href="/" class="logo">CRACKFORFUN</a>
+  <nav class="nav">
+    <a href="/games.html">Games</a>
+  </nav>
+</div></header>
+<main class="container">
+  <h1>Chào mừng đến với CRACKFORFUN</h1>
+  <p>Trang chia sẻ game miễn phí, hợp pháp và an toàn. Bạn có thể duyệt qua danh sách game hoặc xem chi tiết từng game. Các liên kết tải nhanh và link rút gọn giúp ủng hộ website.</p>
+  <h2>Game nổi bật</h2>
+  <div id="featured" class="grid"></div>
+  <p><a class="btn primary" href="/games.html">Xem tất cả game</a></p>
+</main>
+<footer>© 2025 CRACKFORFUN. Nội dung game phải hợp pháp. Các liên kết tải có thể chứa quảng cáo.</footer>
+<script>
+async function loadFeatured(){
+  const res = await fetch('/data/games.json',{cache:'no-store'});
+  const data = await res.json();
+  const featured = document.getElementById('featured');
+  const items = (data.items || []).slice(0,6);
+  featured.innerHTML = items.map(g => `
+    <article class="card">
+      ${'${g.thumb ? `<img src="' + g.thumb + '" alt="' + g.title + '">` : ''}'}
+      <h3>${'${g.title}'}</h3>
+      <p>${'${g.excerpt || ""}'} </p>
+      <a class="btn" href="/game.html?id=${'${encodeURIComponent(g.slug)}'}">Xem chi tiết</a>
+    </article>
+  `).join('');
+}
+loadFeatured();
+</script>
+</body>
+</html>

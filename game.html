@@ -1,0 +1,67 @@
+
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Game chi tiết – CRACKFORFUN</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+<header class="header"><div class="container">
+  <a href="/" class="logo">CRACKFORFUN</a> · <a href="/games.html">Games</a>
+</div></header>
+<main class="container">
+  <article id="content" class="dl-card">
+    <h1 id="title">Đang tải...</h1>
+    <img id="thumb" style="max-width:100%;border-radius:12px;margin:6px 0 12px;display:none">
+    <div id="desc"></div>
+
+    <h2>Tải game</h2>
+    <p class="dl-note">Chọn 1 trong các link dưới đây.</p>
+    <div id="links"></div>
+
+    <!-- Placeholder for AdSense or other ads -->
+    <div class="ad-container">
+      <!-- Thay đổi data-ad-client và data-ad-slot bằng mã AdSense của bạn -->
+      <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-xxxxxxxxxxxxxxxx"
+         data-ad-slot="xxxxxxxxxx"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+      <script>
+         (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+    </div>
+  </article>
+</main>
+<footer>© 2025 CRACKFORFUN. Các liên kết tải có thể chứa quảng cáo.</footer>
+<script>
+function qs(name){const u=new URL(location.href);return u.searchParams.get(name)||'';}
+async function render(){
+  const id=qs('id');
+  const res=await fetch('/data/games.json',{cache:'no-store'});
+  const data=await res.json();
+  const game=(data.items||[]).find(x=>x.slug===id);
+  const elTitle=document.getElementById('title');
+  const elThumb=document.getElementById('thumb');
+  const elDesc=document.getElementById('desc');
+  const elLinks=document.getElementById('links');
+  if(!game){elTitle.textContent='Không tìm thấy game';return;}
+  elTitle.textContent=game.title;
+  if(game.thumb){elThumb.src=game.thumb;elThumb.style.display='block';}
+  // convert markdown newlines to <br>
+  elDesc.innerHTML = (game.body||'').replace(/
+/g,'<br>');
+  let html='';
+  if(game.clean_url){ html+=`<a class="btn primary" target="_blank" rel="noopener" href="${game.clean_url}">Download nhanh (sạch)</a>`; }
+  if(game.short_url){ html+=`<a class="btn money" target="_blank" rel="noopener" href="${game.short_url}">Download (rút gọn) — ủng hộ CRACKFORFUN</a>`; }
+  if(game.host_url){ html+=`<a class="btn mirror" target="_blank" rel="noopener" href="${game.host_url}">Mirror 1 (host trả tiền)</a>`; }
+  if(game.filecrypt_url){ html+=`<a class="btn mirror" target="_blank" rel="noopener" href="${game.filecrypt_url}">Container (Filecrypt)</a>`; }
+  elLinks.innerHTML = html || '<p>Chưa có link tải.</p>';
+}
+render();
+</script>
+</body>
+</html>
