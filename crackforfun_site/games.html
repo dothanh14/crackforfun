@@ -1,0 +1,39 @@
+
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Danh sách game – CRACKFORFUN</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+<header class="header"><div class="container">
+  <a href="/" class="logo">CRACKFORFUN</a>
+  <nav class="nav">
+    <a href="/games.html">Games</a>
+  </nav>
+</div></header>
+<main class="container">
+  <h1>Danh sách game</h1>
+  <div id="games" class="grid"></div>
+</main>
+<footer>© 2025 CRACKFORFUN.</footer>
+<script>
+async function loadGames(){
+  const res = await fetch('/data/games.json',{cache:'no-store'});
+  const data = await res.json();
+  const wrap = document.getElementById('games');
+  wrap.innerHTML = (data.items || []).map(g => `
+    <article class="card">
+      ${'${g.thumb ? `<img src="' + g.thumb + '" alt="' + g.title + '">` : ''}'}
+      <h3>${'${g.title}'} </h3>
+      <p>${'${g.excerpt || ""}'} </p>
+      <a class="btn" href="/game.html?id=${'${encodeURIComponent(g.slug)}'}">Xem chi tiết</a>
+    </article>
+  `).join('');
+}
+loadGames();
+</script>
+</body>
+</html>

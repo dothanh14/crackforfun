@@ -1,0 +1,26 @@
+{
+  "items": [
+    {
+      "title": "0 A.D.",
+      "slug": "0ad",
+      "excerpt": "RTS mã nguồn mở, miễn phí.",
+      "thumb": "/images/0ad.jpg",
+      "clean_url": "https://play0ad.com/",
+      "short_url": "",
+      "host_url": "",
+      "filecrypt_url": "",
+      "body": "Game chiến thuật thời gian thực mã nguồn mở, free."
+    },
+    {
+      "title": "Veloren",
+      "slug": "veloren",
+      "excerpt": "Game RPG, open-world được viết bằng Rust.",
+      "thumb": "/images/veloren.jpg",
+      "clean_url": "https://www.veloren.net/",
+      "short_url": "",
+      "host_url": "",
+      "filecrypt_url": "",
+      "body": "Veloren là game open-world RPG lấy cảm hứng từ Cube World, được phát triển bằng Rust."
+    }
+  ]
+}
