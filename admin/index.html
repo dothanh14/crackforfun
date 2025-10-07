@@ -2,35 +2,11 @@
 <html lang="vi">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>CRACKFORFUN CMS</title>
-  <!-- Widget đăng nhập Netlify -->
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
 <body>
-  <!-- Nạp script CMS ổn định nhất -->
-  <script src="https://unpkg.com/netlify-cms-app@2.15.72/dist/netlify-cms.js"></script>
-
-  <script>
-    // Khi Netlify Identity khởi tạo
-    if (window.netlifyIdentity) {
-      window.netlifyIdentity.on('init', user => {
-        if (!user) {
-          window.netlifyIdentity.on('login', () => document.location.reload());
-        }
-      });
-    }
-
-    // Khi CMS đã load xong
-    (function initCMS() {
-      if (window.CMS && typeof window.CMS.init === 'function') {
-        window.CMS.init(); // Khởi tạo CMS
-        console.log('✅ CMS initialized');
-      } else {
-        console.log('⏳ waiting CMS script...');
-        setTimeout(initCMS, 300);
-      }
-    })();
-  </script>
+  <script src="/js/netlify-cms.js"></script>
 </body>
 </html>
