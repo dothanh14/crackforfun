@@ -1,70 +1,87 @@
 <!doctype html>
-<html>
+<html lang="vi">
 <head>
+  <!-- Google AdSense -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4053699777471766"
      crossorigin="anonymous"></script>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>CRACKFORFUN – Game Hub</title>
-  <link rel="stylesheet" href="style.css"/>
+  <meta name="description" content="Trang chia sẻ game miễn phí, hợp pháp và an toàn. Duyệt qua danh sách game, tải nhanh và ủng hộ website qua link rút gọn." />
+
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-<header class="header">
-  <div class="container">
-    <a href="/" class="logo">CRACKFORFUN</a>
-    <nav class="nav">
-      <a href="/games.html">Games</a>
-    </nav>
-  </div>
-</header>
+  <header class="header">
+    <div class="container">
+      <a href="/" class="logo">CRACKFORFUN</a>
+      <nav class="nav">
+        <a href="/games.html">Games</a>
+      </nav>
+    </div>
+  </header>
 
-<main class="container">
-  <h1>Chào mừng đến với CRACKFORFUN</h1>
-  <p>Trang chia sẻ game miễn phí, hợp pháp và an toàn. Bạn có thể duyệt qua danh sách game hoặc xem chi tiết từng game. Các liên kết tải nhanh và link rút gọn giúp ủng hộ website.</p>
+  <main class="container">
+    <h1>Chào mừng đến với CRACKFORFUN</h1>
+    <p>Trang chia sẻ game miễn phí, hợp pháp và an toàn. Bạn có thể duyệt qua danh sách game hoặc xem chi tiết từng game. Các liên kết tải nhanh và link rút gọn giúp ủng hộ website.</p>
 
-  <h2>Game nổi bật</h2>
-  <div id="featured" class="grid"></div>
+    <!-- Quảng cáo giữa nội dung -->
+    <ins class="adsbygoogle"
+         style="display:block; text-align:center; margin: 20px auto;"
+         data-ad-client="ca-pub-4053699777471766"
+         data-ad-slot="1234567890"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>
+      (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
 
-  <p><a class="btn primary" href="/games.html">Xem tất cả game</a></p>
-</main>
+    <h2>Game nổi bật</h2>
+    <div id="featured" class="grid"></div>
 
-<footer>© 2025 CRACKFORFUN. Nội dung game phải hợp pháp. Các liên kết tải có thể chứa quảng cáo.</footer>
+    <p><a class="btn primary" href="/games.html">Xem tất cả game</a></p>
+  </main>
 
-<!-- Netlify Identity widget để xử lý Accept Invite / Login -->
-<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-<script>
-  // Nếu chưa đăng nhập, khi login xong tự chuyển vào /admin
-  if (window.netlifyIdentity) {
-    window.netlifyIdentity.on('init', (user) => {
-      if (!user) {
-        window.netlifyIdentity.on('login', () => {
-          document.location.href = '/admin/';
-        });
-      }
-    });
-  }
+  <footer>
+    © 2025 <strong>CRACKFORFUN</strong>. Nội dung game phải hợp pháp. Các liên kết tải có thể chứa quảng cáo.
+  </footer>
 
-  // Load danh sách game nổi bật từ data/games.json
-  async function loadFeatured() {
-    try {
-      const res = await fetch('/data/games.json', { cache: 'no-store' });
-      const data = await res.json();
-      const featured = document.getElementById('featured');
-      const items = (data.items || []).slice(0, 6);
-
-      featured.innerHTML = items.map(g => `
-        <article class="card">
-          ${g.thumb ? `<img src="${g.thumb}" alt="${g.title}">` : ''}
-          <h3>${g.title}</h3>
-          <p>${g.excerpt || ''}</p>
-          <a class="btn" href="/game.html?id=${encodeURIComponent(g.slug)}">Xem chi tiết</a>
-        </article>
-      `).join('');
-    } catch (e) {
-      console.error('Lỗi tải danh sách game:', e);
+  <!-- Netlify Identity widget để xử lý Accept Invite / Login -->
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <script>
+    // Nếu chưa đăng nhập, khi login xong tự chuyển vào /admin
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on('init', (user) => {
+        if (!user) {
+          window.netlifyIdentity.on('login', () => {
+            document.location.href = '/admin/';
+          });
+        }
+      });
     }
-  }
-  loadFeatured();
-</script>
+
+    // Load danh sách game nổi bật từ data/games.json
+    async function loadFeatured() {
+      try {
+        const res = await fetch('/data/games.json', { cache: 'no-store' });
+        const data = await res.json();
+        const featured = document.getElementById('featured');
+        const items = (data.items || []).slice(0, 6);
+
+        featured.innerHTML = items.map(g => `
+          <article class="card">
+            ${g.thumb ? `<img src="${g.thumb}" alt="${g.title}">` : ''}
+            <h3>${g.title}</h3>
+            <p>${g.excerpt || ''}</p>
+            <a class="btn" href="/game.html?id=${encodeURIComponent(g.slug)}">Xem chi tiết</a>
+          </article>
+        `).join('');
+      } catch (e) {
+        console.error('⚠️ Lỗi tải danh sách game:', e);
+      }
+    }
+    loadFeatured();
+  </script>
 </body>
 </html>
